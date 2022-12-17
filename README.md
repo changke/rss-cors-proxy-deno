@@ -12,7 +12,7 @@ But most RSS sources cannot be simply `fetch`ed locally because of CORS policy.
 
 One workaround would be a simple proxy server that retrieves RSS sources and adds CORS header to allow local consuming.
 
-```
+```text
 ┌───────┐        ┌─────┐    ┌──────┐
 │Browser│        │Proxy│    │Target│
 └───┬───┘        └──┬──┘    └──┬───┘

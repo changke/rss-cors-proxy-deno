@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.121.0/http/server.ts";
+import {serve} from 'https://deno.land/std@0.140.0/http/server.ts';
 
 const port = 8080;
 
@@ -13,7 +13,7 @@ const addCorsHeader = (response: Response) => {
   return headers;
 };
 
-const urlValid = (url: string) => {
+const isUrlValid = (url: string) => {
   if (!(url.startsWith('https://') || url.startsWith('http://'))) {
     return false;
   }
@@ -30,7 +30,7 @@ const getTargetUrl = (reqUrl: string) => {
   const urlObj = new URL(reqUrl);
   // target URL from query string "target"
   const url = decodeURIComponent(urlObj.searchParams.get('target') || '');
-  return urlValid(url) ? url : '';
+  return isUrlValid(url) ? url : '';
 };
 
 const handler = async (req: Request) => {
