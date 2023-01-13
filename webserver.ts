@@ -4,9 +4,7 @@ const port = 8080;
 
 const addCorsHeader = (response: Response) => {
   const headers = new Headers(response.headers);
-  if (!headers.has('access-control-allow-origin')) {
-    headers.set('access-control-allow-origin', '*');
-  }
+  headers.set('access-control-allow-origin', '*');
   if (!headers.has('content-type')) {
     headers.set('content-type', 'text/xml; charset=utf-8');
   }
