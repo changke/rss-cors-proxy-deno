@@ -1,4 +1,7 @@
-import {serve} from 'https://deno.land/std@0.140.0/http/server.ts';
+/**
+ * A proxy server to retrieve RSS resources and add CORS header
+ * for local Ajax consuming
+ */
 
 const port = 8080;
 
@@ -15,13 +18,7 @@ const isUrlValid = (url: string) => {
   if (!(url.startsWith('https://') || url.startsWith('http://'))) {
     return false;
   }
-
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
+  return URL.canParse(url);
 };
 
 const getTargetUrl = (reqUrl: string) => {
@@ -58,4 +55,5 @@ const handler = async (req: Request) => {
 };
 
 console.log(`HTTP webserver running. Access it at: http://localhost:${port.toString()}/`);
-await serve(handler, {port});
+
+Deno.serve({port}, handler);
